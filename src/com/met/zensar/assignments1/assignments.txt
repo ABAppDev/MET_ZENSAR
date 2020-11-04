@@ -1,0 +1,59 @@
+package assignments;
+
+/* ASSIGNMENTS
+
+1. Create a Book class having 
+data members-bookId,bookName,bookPrice
+-bookId must get auto generated
+create an Author class having 
+data members- id,authorName
+-print all the information of Book when bookId is supplied along with Author details
+-arrange all the books price-wise (Lowest price to highest)
+(Hint: For multiple books use arrays)
+=>
+
+2. Write a code to swap contents(dd,mm,yy) of two Date objects using existing Date class.
+(Hint: swapping Logic should not exceed 3 lines of code)
+=>
+
+
+3. Create a Demo class having static block,static method,static variable and main method to check flow of execution in 2 cases
+Case-1 main method must be in same class
+Case-2 main method must be in diff class
+=>
+
+
+
+4. Write a code to restrict object creation of any class to one object only.
+(Hint: More than one instance of any class should not get created)
+=>
+
+
+
+5. Try outs…..write valid explanation for answer
+    1. one Java file can hold how many public classes
+    2.can we make local variables static
+    3.can we make class private or static
+    4.can we make main method non static
+    5. can a static method access non static data and vise a versa
+    6.How many static blocks can we write at a time in single class
+    7.can we make class protected
+    8. can we print this reff in static method
+    9. can we overload main methods
+    10. can we replace main method with static block for object creation
+=> ANSWER.TXT
+
+
+6. In existing Employee hierarchy add one more child class to Manager class AreaSalesManager having additional data as petrolAllowance , foodAllowance, mobileAllowance. calculate salary of all the 3 classes and display it using AreaSalesManager object
+=>
+
+
+7. If a class is Final and u cannot access it using Inheritance how will you use data and methods of the class. Write a code to access data  and a method of a final class
+=>
+
+
+8. Write a code to programmatically control containment.
+=>
+
+
+*/

@@ -1,0 +1,38 @@
+Q. Try outs…..write valid explanation for answer
+
+
+1. one Java file can hold how many public classes
+	= Java had restrictions over creating multiple public classes in single java file.
+	= Java file name and public class in it should be exactly same.
+ 
+2.can we make local variables static
+	= No only final specifier allowed there.
+
+
+3.can we make class private or static
+	= Inner class in nested classes can be made static. 
+	= private and static not allowed else.
+
+
+4.can we make main method non static
+	= no we can not make main method non static, as JVM requires main method first.
+
+
+5. can a static method access non static data and vise a versa
+	=no it can not access non static data.
+
+6.How many static blocks can we write at a time in single class
+	=multiple
+
+7.can we make class protected
+	= no
+
+8. can we print this reff in static method
+	=no we can not use it in static method, it only accesses Static members
+
+9. can we overload main methods
+	= no we can not overload main method, it is static and one instanced in program.
+
+10. can we replace main method with static block for object creation
+	=main method is cumpolsory for implement from java version 7
+	= we can use static block but it can be useful for static 
