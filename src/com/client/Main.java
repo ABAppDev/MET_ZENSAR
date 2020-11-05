@@ -1,5 +1,7 @@
 package com.client;
 
+import com.exceptions.InsufficiantAccountBalance;
+import com.exceptions.InvalidAccountException;
 import com.providers.BusinessComponentProvider;
 import com.services.AccountServices;
 import com.services_impl.AccountServicesImplementation;
@@ -20,8 +22,16 @@ public class Main {
     System.out.println("New Account " + accNo + " Created");
 
     // Deposit Amount In Account
-    float balance = services.deposit(10001, 70000.0f);
+    float balance = services.deposit(100051, 70000.0f);
     System.out.println("Balance Reflected: " + balance);
+
+    try {
+      balance = services.withdraw(100011,500);
+      System.out.println("Balance Reflected: " + balance);
+
+    } catch (InvalidAccountException | InsufficiantAccountBalance e) {
+      e.printStackTrace();
+    }
 
     // Create Account2
     int accNo2 = services2.openAccount("CA", 5000);
@@ -32,8 +42,12 @@ public class Main {
     System.out.println("Balance Reflected: " + balance2);
 
 
-
-    services2 = services.fundTransfer(10001, 10002, (AccountServicesImplementation) services2, 5000);
+    try {
+      services2 = services.fundTransfer(10001, 10002, (AccountServicesImplementation) services2, 5000);
+    } catch (InvalidAccountException | InsufficiantAccountBalance e) {
+      e.printStackTrace();
+      System.err.println(e.getMessage());
+    }
 
     services.checkBalance(10001);
     services2.checkBalance(10002);

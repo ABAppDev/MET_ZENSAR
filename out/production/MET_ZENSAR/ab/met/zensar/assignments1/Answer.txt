@@ -35,4 +35,13 @@ Q. Try outs…..write valid explanation for answer
 
 10. can we replace main method with static block for object creation
 	=main method is cumpolsory for implement from java version 7
-	= we can use static block but it can be useful for static 
+	= we can use static block but it can be useful for static
+
+
+	=====
+
+1. can we make any method abstract final
+2. can we make method static abstract
+3. can we override static methods in sub classes
+4.can we mark interfaces final
+5. can an abstract class be created without abstract method in it

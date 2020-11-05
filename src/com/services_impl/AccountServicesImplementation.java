@@ -2,6 +2,8 @@ package com.services_impl;
 // AccountServices
 
 import com.beans.Account;
+import com.exceptions.InsufficiantAccountBalance;
+import com.exceptions.InvalidAccountException;
 import com.services.AccountServices;
 
 public class AccountServicesImplementation implements AccountServices {
@@ -53,13 +55,23 @@ public class AccountServicesImplementation implements AccountServices {
    * @param amount amount
    * @return balance
    */
-  public float withdraw(int accNo, float amount) {
+  public float withdraw(int accNo, float amount)
+      throws InvalidAccountException, InsufficiantAccountBalance {
     float updated_balance = 0;
-    if (!(ac.getBalance() - amount < 0) && isAccountValid(accNo)) // if fund is insufficient
-    {
-      ac.setBalance(ac.getBalance() - amount);
-      updated_balance = ac.getBalance();
-    }
+
+
+      if (isAccountValid(accNo)) {
+
+        if (!(ac.getBalance() - amount < 0)) {
+
+          ac.setBalance(ac.getBalance() - amount);
+          updated_balance = ac.getBalance();
+
+        } else throw new InsufficiantAccountBalance("Not Enough Balance In Account");
+
+      } else throw new InvalidAccountException("Account Details Invalid");
+
+
     return updated_balance;
   }
 
@@ -76,7 +88,8 @@ public class AccountServicesImplementation implements AccountServices {
 
   // transfer amount between two account
   public AccountServicesImplementation fundTransfer(
-      int srcAccNo, int destAccNo, AccountServicesImplementation dest, float amount) {
+      int srcAccNo, int destAccNo, AccountServicesImplementation dest, float amount)
+      throws InvalidAccountException, InsufficiantAccountBalance {
 
     if (this.isAccountValid(srcAccNo) && dest.isAccountValid(destAccNo)) {
 

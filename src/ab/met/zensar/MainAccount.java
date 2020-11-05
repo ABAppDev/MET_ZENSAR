@@ -1,4 +1,4 @@
-package com;
+package ab.met.zensar;
 //EntryPoint
 
 import com.services_impl.AccountServicesImplementation;
