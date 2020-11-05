@@ -5,4 +5,9 @@ public class ArmstrongException extends Exception {
   public ArmstrongException(String message) {
     super(message);
   }
+
+  @Override
+  public String toString() {
+    return "IT IS ARMSTRONG NUMBER";
+  }
 }

@@ -5,4 +5,10 @@ public class PalindromeException extends Exception {
   public PalindromeException(String message) {
     super(message);
   }
+
+
+  @Override
+  public String toString() {
+    return "IT IS PALINDROME NUMBER";
+  }
 }

@@ -5,4 +5,11 @@ public class OddNumberException extends Exception {
   public OddNumberException(String message) {
     super(message);
   }
+
+
+  @Override
+  public String toString() {
+    return "IT IS ODD NUMBER";
+  }
+
 }

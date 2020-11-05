@@ -2,41 +2,23 @@ package ab.met.zensar.exceptionpack.practice.odd_even;
 
 public class MainOddEven {
 
-  public static void main(String[] args) {
+  public static void main(String[] args)
+      throws OddNumberException, PalindromeException, ArmstrongException {
     //
 
     int Number = Integer.parseInt(args[0]);
 
-    try {
-      if (Number % 2 == 1) {
-        throw new OddNumberException("Odd Number");
-      }
-    } catch (OddNumberException e) {
-      System.out.println(e.getMessage());
-    }
-
-    try {
-      if (isNumberPalindrome(Number)) {
-        throw new PalindromeException("Number Is Palindrome");
-      }
-    } catch (PalindromeException e) {
-      System.out.println(e.getMessage());
-    }
-
-    try {
-      if (isArmstrongNumber(Number)) {
-        throw new ArmstrongException("Number Is Armstrong");
-      }
-    } catch (ArmstrongException e) {
-      System.out.println(e.getMessage());
-    }
-
+    isOddNumber(Number);
+    isNumberPalindrome(Number);
+    isArmstrongNumber(Number);
 
   }
 
+  private static void isOddNumber(int number) throws OddNumberException {
+    if (number % 2 == 1) throw new OddNumberException("ODD NUMBER");
+  }
 
-
-  private static boolean isArmstrongNumber(int numberToTest) {
+  private static void isArmstrongNumber(int numberToTest) throws ArmstrongException {
 
     int c = 0, a, temp;
     temp = numberToTest;
@@ -46,10 +28,12 @@ public class MainOddEven {
       c = c + (a * a * a);
     }
 
-    return temp == c;
+    if (temp == c) {
+      throw new ArmstrongException("This Is Armstrong Number");
+    }
   }
 
-  private static boolean isNumberPalindrome(int numberToTest) {
+  private static void isNumberPalindrome(int numberToTest) throws PalindromeException {
     int r, sum = 0, temp;
     temp = numberToTest;
 
@@ -58,6 +42,9 @@ public class MainOddEven {
       sum = (sum * 10) + r;
       numberToTest = numberToTest / 10;
     }
-    return temp == sum;
+
+    if (temp == sum) {
+      throw new PalindromeException("This Is Armstrong Number");
+    }
   }
 }
