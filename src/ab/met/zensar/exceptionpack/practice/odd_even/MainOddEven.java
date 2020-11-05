@@ -15,7 +15,7 @@ public class MainOddEven {
   }
 
   private static void isOddNumber(int number) throws OddNumberException {
-    if (number % 2 == 1) throw new OddNumberException("ODD NUMBER");
+    if (number % 2 == 1) throw new OddNumberException();
   }
 
   private static void isArmstrongNumber(int numberToTest) throws ArmstrongException {
@@ -29,7 +29,7 @@ public class MainOddEven {
     }
 
     if (temp == c) {
-      throw new ArmstrongException("This Is Armstrong Number");
+      throw new ArmstrongException();
     }
   }
 
@@ -44,7 +44,7 @@ public class MainOddEven {
     }
 
     if (temp == sum) {
-      throw new PalindromeException("This Is Armstrong Number");
+      throw new PalindromeException();
     }
   }
 }

@@ -4,10 +4,10 @@ public class CharecterMain {
 
   public static void charTest(char ch) throws VowelException, NotVowelException {
     if ("AEIOUaeiou".contains(ch + "")) {
-      throw new VowelException("Given Charecter Is Vowel");
+      throw new VowelException();
     } else {
 
-      throw new NotVowelException("Given Charecter Is Not Vowel");
+      throw new NotVowelException();
     }
   }
 
