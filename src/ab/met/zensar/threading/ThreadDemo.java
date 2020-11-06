@@ -1,52 +1,55 @@
 package ab.met.zensar.threading;
 
 public class ThreadDemo extends Thread {
-public   Thread T11, T55;
+  //create custom threads
+  Thread t1, t2;
 
   public ThreadDemo() {
-    T11 = new Thread();
-    T55 = new Thread();
+    t1 = new Thread(this);
+    t1.start();
 
-    T11.start();
-    T55.start();
+    t2 = new Thread(this);
+    t2.start();
 
   }
 
-  @Override
-  public void run() {
-    System.out.println("11 " + 1 + "'s are " + 11 * 1);
+  public synchronized void run() {
+    if (Thread.currentThread() == t1) {
 
-    if (Thread.currentThread() == T11) {
-      System.out.println("11 " + 1 + "'s are " + 11 * 1);
+      for (int i = 1; i < 11; i++) {
+        System.out.println(i + " X 11 = " + i * 11);
 
-      for (int i = 1; i <= 10; i++) {
+        if (i == 10) {
+          try {
 
-        try {        System.out.println("11 " + i + "'s are " + 11 * i);
-
-          Thread.sleep(100);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
+            wait();
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
-    if (Thread.currentThread() == T55) {
+    if (Thread.currentThread() == t2) {
 
-      for (int i = 1; i <= 10; i++) {
+      for (int i = 1; i < 11; i++) {
+        if (i == 10) {
+          System.out.println(i + " X 55 = " + i * 55);
+          try {
 
-        try {
-          System.out.println("55 " + i + "'s are " + 55 * i);
-
-          Thread.sleep(100);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
+            notify();
+            Thread.sleep(20);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
   }
 
   public static void main(String[] args) {
-    //
-    ThreadDemo T = new ThreadDemo();
-
+    System.out.println("in main");
+    ThreadDemo d1 = new ThreadDemo();
+    d1.run();
   }
+
 }
