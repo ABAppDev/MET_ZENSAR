@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 public class ConsoleToConsole {
   public static void main(String[] args) throws IOException {
     //
+    System.out.println("\nInput Data to Console;-");
+
     BufferedReader Br = new BufferedReader(new InputStreamReader(System.in));
 
     String read_data = Br.readLine();
