@@ -157,3 +157,10 @@ public class JDBCPreparedDemo {
 
 
 }
+
+
+/*
+
+UPDATE Account SET Balance = ?  WHERE AccountNo > ?"
+
+ */
