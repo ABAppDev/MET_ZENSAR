@@ -35,9 +35,14 @@ public class BusinessComponentProvider {
         | InstantiationException
         | IllegalAccessException
         | IOException e) {
-      e.printStackTrace();
+      // e.printStackTrace();
       System.err.println(e.getMessage());
     } finally {
+      try {
+        FIS.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
       return ac;
     }
   }
