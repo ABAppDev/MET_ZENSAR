@@ -26,7 +26,7 @@ public class Main {
     System.out.println("Balance Reflected: " + balance);
 
     try {
-      balance = services.withdraw(100011,500);
+      balance = services.withdraw(10001,500);
       System.out.println("Balance Reflected: " + balance);
 
     } catch (InvalidAccountException | InsufficiantAccountBalance e) {
