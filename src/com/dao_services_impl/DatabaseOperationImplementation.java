@@ -22,7 +22,8 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
     }
   }
 
-  public void insertNewAccount(Account AC) {
+  @Override
+  public int insertNewAccount(Account AC) {
 
     try {
 
@@ -35,13 +36,29 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
 
       System.out.println("\n\nAccount Generated ");
 
+      return AC.getAccNo();
     } catch (SQLException throwables) {
       System.err.println("\nError =" + throwables.getMessage());
+      return 0;
     }
   }
 
   @Override
-  public void updatebalance(int accNo, float Balance) {}
+  public void updateBalance(int accNo, float Balance) {
+
+    try {
+      PreparedStatement pst =
+          con.prepareStatement("update Account set BALANCE=? where AccountNo =?");
+      pst.setFloat(1, Balance);
+      pst.setInt(2, accNo);
+      int count = pst.executeUpdate();
+      System.out.println("Record updated" + count);
+    } catch (SQLException e) {
+      System.out.println("\n" + e.getMessage());
+    } catch (Exception e) {
+      System.out.println("\n" + e.getMessage());
+    }
+  }
 
   @Override
   public void getAccountDetails(int accNo) {
@@ -64,5 +81,6 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
     DatabaseOperations d1 = new DatabaseOperationImplementation();
     // d1.insertNewAccount(new Account("Abhishek", "CA", 50000));
     d1.getAccountDetails(10001);
+    d1.updateBalance(10001,500);
   }
 }

@@ -15,5 +15,8 @@ public class DB {
     int accNo = services.openAccount("CA", 600000);
 
     System.out.println("New Account " + accNo + " Created");
+
+    services.checkBalance(10001);
+    services.deposit(10001,500);
   }
 }
