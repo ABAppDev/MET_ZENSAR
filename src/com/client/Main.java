@@ -1,12 +1,10 @@
 package com.client;
 
-import com.exceptions.InsufficiantAccountBalance;
+import com.exceptions.InsufficiantAccountBalanceException;
 import com.exceptions.InvalidAccountException;
 import com.providers.BusinessComponentProvider;
 import com.services.AccountServices;
 import com.services_impl.AccountServicesImplementation;
-
-import java.util.ArrayList;
 
 // Main Client Code Program
 
@@ -31,7 +29,7 @@ public class Main {
       balance = services.withdraw(10001,500);
       System.out.println("Balance Reflected: " + balance);
 
-    } catch (InvalidAccountException | InsufficiantAccountBalance e) {
+    } catch (InvalidAccountException | InsufficiantAccountBalanceException e) {
       e.printStackTrace();
     }
 
@@ -46,7 +44,7 @@ public class Main {
 
     try {
       services2 = services.fundTransfer(10001, 10002, (AccountServicesImplementation) services2, 5000);
-    } catch (InvalidAccountException | InsufficiantAccountBalance e) {
+    } catch (InvalidAccountException | InsufficiantAccountBalanceException e) {
       e.printStackTrace();
       System.err.println(e.getMessage());
     }

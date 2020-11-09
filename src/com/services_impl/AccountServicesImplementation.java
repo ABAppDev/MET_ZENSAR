@@ -2,13 +2,20 @@ package com.services_impl;
 // AccountServices
 
 import com.beans.Account;
-import com.exceptions.InsufficiantAccountBalance;
+import com.dao_services.DatabaseOperations;
+import com.exceptions.InsufficiantAccountBalanceException;
 import com.exceptions.InvalidAccountException;
+import com.providers.DatabaseObjectProvider;
 import com.services.AccountServices;
 
 public class AccountServicesImplementation implements AccountServices {
 
   private Account ac;
+  private DatabaseOperations databaseOperations;
+
+  public AccountServicesImplementation() {
+    databaseOperations = DatabaseObjectProvider.getDAOObject();
+  }
 
   /**
    * Create New Account
@@ -19,6 +26,7 @@ public class AccountServicesImplementation implements AccountServices {
    */
   public int openAccount(String Type, float initialBalance) {
     ac = new Account(Type, initialBalance);
+    databaseOperations.insertNewAccount(ac);
     return ac.getAccNo();
   }
 
@@ -43,6 +51,7 @@ public class AccountServicesImplementation implements AccountServices {
     float updated_balance = 0;
     if (isAccountValid(accNo)) {
       ac.setBalance(ac.getBalance() + amount);
+      databaseOperations.updateBalance(ac.getAccNo(), ac.getBalance());
       updated_balance = ac.getBalance();
     }
     return updated_balance;
@@ -56,7 +65,7 @@ public class AccountServicesImplementation implements AccountServices {
    * @return balance
    */
   public float withdraw(int accNo, float amount)
-      throws InvalidAccountException, InsufficiantAccountBalance {
+      throws InvalidAccountException, InsufficiantAccountBalanceException {
     float updated_balance = 0;
 
     if (isAccountValid(accNo)) {
@@ -64,9 +73,10 @@ public class AccountServicesImplementation implements AccountServices {
       if (!(ac.getBalance() - amount < 0)) {
 
         ac.setBalance(ac.getBalance() - amount);
+        databaseOperations.updateBalance(ac.getAccNo(), ac.getBalance());
         updated_balance = ac.getBalance();
 
-      } else throw new InsufficiantAccountBalance("Not Enough Balance In Account");
+      } else throw new InsufficiantAccountBalanceException("Not Enough Balance In Account");
 
     } else throw new InvalidAccountException("Account Details Invalid");
 
@@ -80,14 +90,14 @@ public class AccountServicesImplementation implements AccountServices {
   }
 
   // complete account information
-  public String getAccountInfo() {
-    return ac.toString();
+  public void getAccountInfo() {
+    databaseOperations.getAccountDetails(ac.getAccNo());
   }
 
   // transfer amount between two account
   public AccountServicesImplementation fundTransfer(
       int srcAccNo, int destAccNo, AccountServicesImplementation dest, float amount)
-      throws InvalidAccountException, InsufficiantAccountBalance {
+      throws InvalidAccountException, InsufficiantAccountBalanceException {
 
     if (this.isAccountValid(srcAccNo) && dest.isAccountValid(destAccNo)) {
 

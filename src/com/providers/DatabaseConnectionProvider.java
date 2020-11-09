@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-public class DatabaseProvider {
+public class DatabaseConnectionProvider {
   /** @return Connection For Database */
   public static Connection provideDatabase() {
     Connection con = null;

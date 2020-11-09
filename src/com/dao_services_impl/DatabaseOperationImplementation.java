@@ -1,8 +1,8 @@
 package com.dao_services_impl;
 
-import ab.met.zensar.accounting_project.Account;
+import com.beans.Account;
 import com.dao_services.DatabaseOperations;
-import com.providers.DatabaseProvider;
+import com.providers.DatabaseConnectionProvider;
 
 import java.sql.*;
 
@@ -10,8 +10,8 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
   private Connection con = null;
   private ResultSet rs;
 
-  DatabaseOperationImplementation() {
-    con = DatabaseProvider.provideDatabase();
+  public DatabaseOperationImplementation() {
+    con = DatabaseConnectionProvider.provideDatabase();
   }
 
   /**
@@ -23,9 +23,8 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
 
     try {
 
-      PreparedStatement stmt = con.prepareStatement("insert into Account values(?,?,?,?)");
+      PreparedStatement stmt = con.prepareStatement("insert into Account values(?,?,?)");
       stmt.setInt(1, AC.getAccNo());
-      stmt.setString(2, AC.getName());
       stmt.setString(3, AC.getType());
       stmt.setFloat(4, AC.getBalance());
       int i = stmt.executeUpdate();
