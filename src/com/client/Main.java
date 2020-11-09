@@ -18,11 +18,11 @@ public class Main {
     AccountServices services2 = BusinessComponentProvider.provideObject();
 
     // Create Account
-    int accNo = services.openAccount("CA", 600000);
+    int accNo = services.openAccount("SC", 600000);
     System.out.println("New Account " + accNo + " Created");
 
     // Deposit Amount In Account
-    float balance = services.deposit(100051, 70000.0f);
+    float balance = services.deposit(10001, 70000.0f);
     System.out.println("Balance Reflected: " + balance);
 
     try {

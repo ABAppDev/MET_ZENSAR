@@ -25,8 +25,8 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
 
       PreparedStatement stmt = con.prepareStatement("insert into Account values(?,?,?)");
       stmt.setInt(1, AC.getAccNo());
-      stmt.setString(3, AC.getType());
-      stmt.setFloat(4, AC.getBalance());
+      stmt.setString(2, AC.getType());
+      stmt.setFloat(3, AC.getBalance());
       int i = stmt.executeUpdate();
       System.out.println("\n\nNew Account Created");
       return AC.getAccNo();
@@ -67,7 +67,14 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
 
       rs = stmt.executeQuery();
 
-      while (rs.next()) System.out.println("\nAccount Details ==>\n " + rs.getString("HolderName"));
+      while (rs.next())
+        System.out.println(
+            "\nAccount Details ==>\n AccountNo = "
+                + rs.getString("AccountNo")
+                + "\n Account Type = "
+                + rs.getString("AccountType")
+                + "\n Account Balance = "
+                + rs.getString("Balance"));
 
     } catch (SQLException throwables) {
       System.err.println("\nError =" + throwables.getMessage());
