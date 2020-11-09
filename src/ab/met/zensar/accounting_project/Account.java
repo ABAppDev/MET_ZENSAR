@@ -14,7 +14,9 @@ public class Account {
 		this.type = type;
 	}
 
-	public int getAccNo() {
+
+
+    public int getAccNo() {
 		return accNo;
 	}
 
