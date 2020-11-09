@@ -11,13 +11,16 @@ public class StudentV2 {
     this.sAge = sAge;
   }
 
-
   public int getsRollNum() {
     return sRollNum;
   }
 
   public int getsAge() {
     return sAge;
+  }
+
+  public String getsName() {
+    return sName;
   }
 
   @Override

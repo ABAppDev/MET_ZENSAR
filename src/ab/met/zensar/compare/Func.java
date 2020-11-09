@@ -42,5 +42,18 @@ public class Func {
     while (it3.hasNext()) {
       System.out.println(it3.next());
     }
+
+
+
+
+    System.out.println("\n\nBy Comparator(Name)");
+
+    Collections.sort(alStudent2, new NameComparator());
+
+    Iterator<StudentV2> it4 = alStudent2.iterator();
+    while (it4.hasNext()) {
+      System.out.println(it4.next());
+    }
+
   }
 }
