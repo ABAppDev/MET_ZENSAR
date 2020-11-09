@@ -59,18 +59,16 @@ public class AccountServicesImplementation implements AccountServices {
       throws InvalidAccountException, InsufficiantAccountBalance {
     float updated_balance = 0;
 
+    if (isAccountValid(accNo)) {
 
-      if (isAccountValid(accNo)) {
+      if (!(ac.getBalance() - amount < 0)) {
 
-        if (!(ac.getBalance() - amount < 0)) {
+        ac.setBalance(ac.getBalance() - amount);
+        updated_balance = ac.getBalance();
 
-          ac.setBalance(ac.getBalance() - amount);
-          updated_balance = ac.getBalance();
+      } else throw new InsufficiantAccountBalance("Not Enough Balance In Account");
 
-        } else throw new InsufficiantAccountBalance("Not Enough Balance In Account");
-
-      } else throw new InvalidAccountException("Account Details Invalid");
-
+    } else throw new InvalidAccountException("Account Details Invalid");
 
     return updated_balance;
   }

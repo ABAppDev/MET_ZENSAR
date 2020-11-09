@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 public class DatabaseProvider {
+  /** @return Connection For Database */
   public static Connection provideDatabase() {
     Connection con = null;
 
@@ -27,9 +28,7 @@ public class DatabaseProvider {
               properties.getProperty("Username"),
               properties.getProperty("Password"));
 
-    } catch (ClassNotFoundException
-
-        | IOException e) {
+    } catch (ClassNotFoundException | IOException e) {
       // e.printStackTrace();
       System.err.println(e.getMessage());
     } finally {

@@ -17,22 +17,27 @@ public class Account {
     this.type = type;
   }
 
+  /** @return get Account Number */
   public int getAccNo() {
     return accNo;
   }
 
+  /** @return get Account Balance */
   public float getBalance() {
     return balance;
   }
 
+  /** @param balance set Account balance */
   public void setBalance(float balance) {
     this.balance = balance;
   }
 
+  /** @return set Account Type */
   public String getType() {
     return type;
   }
 
+  /** @param type get AccountType */
   public void setType(String type) {
     this.type = type;
   }

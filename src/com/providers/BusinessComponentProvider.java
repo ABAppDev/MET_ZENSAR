@@ -12,11 +12,6 @@ import java.util.Properties;
 /** Creates BusinessComponent And Provide */
 public class BusinessComponentProvider {
   /** @return AccountServices */
-  /*public static AccountServices provideObject(){
-  return new AccountServicesImplementation();
-  }
-
-   */
   public static AccountServices provideObject() {
     FileInputStream FIS = null;
     AccountServices ac = null;
@@ -24,10 +19,8 @@ public class BusinessComponentProvider {
 
     try {
       FIS = new FileInputStream(Package + "config.properties");
-
       Properties properties = new Properties();
       properties.load(FIS);
-
       String class_name = properties.getProperty("BusinessComponent");
       ac = (AccountServices) Class.forName(class_name).newInstance();
 

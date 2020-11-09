@@ -10,18 +10,14 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
   private Connection con = null;
   private ResultSet rs;
 
-  private DatabaseOperations AC;
-
   DatabaseOperationImplementation() {
-    try {
-
-      con = DatabaseProvider.provideDatabase();
-
-    } catch (Exception E) {
-
-    }
+    con = DatabaseProvider.provideDatabase();
   }
 
+  /**
+   * @param AC Account Class
+   * @return AccountNumber
+   */
   @Override
   public int insertNewAccount(Account AC) {
 
@@ -33,16 +29,19 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
       stmt.setString(3, AC.getType());
       stmt.setFloat(4, AC.getBalance());
       int i = stmt.executeUpdate();
-
-      System.out.println("\n\nAccount Generated ");
-
+      System.out.println("\n\nNew Account Created");
       return AC.getAccNo();
+
     } catch (SQLException throwables) {
       System.err.println("\nError =" + throwables.getMessage());
       return 0;
     }
   }
 
+  /**
+   * @param accNo Account Number
+   * @param Balance Balance
+   */
   @Override
   public void updateBalance(int accNo, float Balance) {
 
@@ -53,13 +52,12 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
       pst.setInt(2, accNo);
       int count = pst.executeUpdate();
       System.out.println("Record updated" + count);
-    } catch (SQLException e) {
-      System.out.println("\n" + e.getMessage());
     } catch (Exception e) {
       System.out.println("\n" + e.getMessage());
     }
   }
 
+  /** @param accNo Account Number */
   @Override
   public void getAccountDetails(int accNo) {
 
@@ -75,12 +73,5 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
     } catch (SQLException throwables) {
       System.err.println("\nError =" + throwables.getMessage());
     }
-  }
-
-  public static void main(String args[]) {
-    DatabaseOperations d1 = new DatabaseOperationImplementation();
-    // d1.insertNewAccount(new Account("Abhishek", "CA", 50000));
-    d1.getAccountDetails(10001);
-    d1.updateBalance(10001,500);
   }
 }
