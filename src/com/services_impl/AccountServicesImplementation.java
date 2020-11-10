@@ -85,8 +85,7 @@ public class AccountServicesImplementation implements AccountServices {
 
   // return current balance
   public void checkBalance(int accNo) {
-    if (isAccountValid(accNo))
-      databaseOperations.getAccountDetails(accNo);
+    if (isAccountValid(accNo)) databaseOperations.getAccountDetails(accNo);
     else System.out.println("Account Number Invalid");
   }
 

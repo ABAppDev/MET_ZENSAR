@@ -21,44 +21,36 @@ public class Main {
     int accNo = services.openAccount("SC", 600000);
     System.out.println("New Account " + accNo + " Created");
 
-    // Deposit Amount In Account
-    float balance = services.deposit(10001, 70000.0f);
-    System.out.println("Balance Reflected: " + balance);
-
-    try {
-      balance = services.withdraw(10001,500);
-      System.out.println("Balance Reflected: " + balance);
-
-    } catch (InvalidAccountException | InsufficiantAccountBalanceException e) {
-      e.printStackTrace();
-    }
-
     // Create Account2
-    int accNo2 = services2.openAccount("CA", 5000);
+    int accNo2 = services2.openAccount("CA", 50000);
     System.out.println("\nNew Account " + accNo2 + " Created");
 
-    // Deposit Amount In Account
-    float balance2 = services2.deposit(10002, 5500.0f);
-    System.out.println("Balance Reflected: " + balance2);
+    /*   // Deposit Amount In Account
+      float balance = services.deposit(10001, 70000.0f);
+      System.out.println("Balance Reflected: " + balance);
 
+      try {
+        balance = services.withdraw(10001, 500);
+        System.out.println("Balance Reflected: " + balance);
+
+      } catch (InvalidAccountException | InsufficiantAccountBalanceException e) {
+        e.printStackTrace();
+      }
+
+      // Deposit Amount In Account
+      float balance2 = services2.deposit(10002, 5500.0f);
+      System.out.println("Balance Reflected: " + balance2);
+
+    */
 
     try {
-      services2 = services.fundTransfer(10001, 10002, (AccountServicesImplementation) services2, 5000);
+      services2 =
+          services.fundTransfer(110001, 110002, (AccountServicesImplementation) services2, 50000);
     } catch (InvalidAccountException | InsufficiantAccountBalanceException e) {
       e.printStackTrace();
       System.err.println(e.getMessage());
     }
-
-    services.checkBalance(10001);
-    services2.checkBalance(10002);
-
-
-
-
-
-
-
-
-
+    services.checkBalance(110001);
+    services2.checkBalance(110002);
   }
 }
