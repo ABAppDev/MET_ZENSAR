@@ -1,11 +1,11 @@
 package com.beans;
-// Account
 
+/** Account Bean Class Holds Account Detail */
 public class Account {
   private int accNo;
   private float balance;
   private String type;
-  private static int acCounter = 110000;
+  private static int acCounter = 200;
 
   /**
    * @param type type
@@ -35,11 +35,6 @@ public class Account {
   /** @return set Account Type */
   public String getType() {
     return type;
-  }
-
-  /** @param type get AccountType */
-  public void setType(String type) {
-    this.type = type;
   }
 
   /** @return AccountDetails As String */

@@ -1,4 +1,4 @@
-package com.client;
+package ab.met.zensar;
 
 import com.providers.BusinessComponentProvider;
 import com.services.AccountServices;
