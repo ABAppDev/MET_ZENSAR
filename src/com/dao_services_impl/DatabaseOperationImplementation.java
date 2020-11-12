@@ -23,17 +23,49 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
 
     try {
 
-      PreparedStatement stmt = con.prepareStatement("insert into Account values(?,?,?)");
-      stmt.setInt(1, AC.getAccNo());
-      stmt.setString(2, AC.getType());
-      stmt.setFloat(3, AC.getBalance());
-      int i = stmt.executeUpdate();
-      System.out.println("\n\nNew Account Created");
+      if (isAccountExists(AC.getAccNo())) {
+
+        updateBalance(AC.getAccNo(), AC.getBalance());
+        System.out.println("\nAccount Already Exists");
+        System.out.println("Existing Account Balance Reset");
+
+      } else {
+
+        PreparedStatement stmt = con.prepareStatement("insert into Account values(?,?,?)");
+        stmt.setInt(1, AC.getAccNo());
+        stmt.setString(2, AC.getType());
+        stmt.setFloat(3, AC.getBalance());
+        int i = stmt.executeUpdate();
+        System.out.println("\nNew Account Created");
+      }
       return AC.getAccNo();
 
     } catch (SQLException throwables) {
-      System.err.println("\nError =" + throwables.getMessage());
+      System.err.println("\nError Occured. Reason - " + throwables.getMessage());
       return 0;
+    }
+  }
+
+
+  /**
+   * Check If Account Exists Or Not
+   * @param NUM Account Number
+   * @return isAccountIsExists In Database
+   */
+  @Override
+  public boolean isAccountExists(int NUM) {
+
+    try {
+
+      PreparedStatement stmt = con.prepareStatement("select * from Account where AccountNo=?");
+      stmt.setInt(1, NUM);
+
+      ResultSet i = stmt.executeQuery();
+      i.next();
+      return i.getInt("AccountNo") == (NUM);
+
+    } catch (SQLException throwables) {
+      return false;
     }
   }
 
@@ -50,7 +82,7 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
       pst.setFloat(1, Balance);
       pst.setInt(2, accNo);
       int count = pst.executeUpdate();
-      System.out.println("Record updated" + count);
+      System.out.println("Transaction Successful");
     } catch (Exception e) {
       System.out.println("\n" + e.getMessage());
     }
@@ -77,7 +109,7 @@ public class DatabaseOperationImplementation implements DatabaseOperations {
                 + rs.getString("Balance"));
 
     } catch (SQLException throwables) {
-      System.err.println("\nError =" + throwables.getMessage());
+      System.err.println("\nError Occured. Reason - " + throwables.getMessage());
     }
   }
 }

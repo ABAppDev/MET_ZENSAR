@@ -12,6 +12,8 @@ public interface DatabaseOperations {
    */
   int insertNewAccount(Account AC);
 
+  boolean isAccountExists(int NUM);
+
   /**
    * Updates Account  Balances
    * @param accNo Account Number

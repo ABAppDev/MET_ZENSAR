@@ -5,7 +5,7 @@ public class Account {
   private int accNo;
   private float balance;
   private String type;
-  private static int acCounter = 200;
+  private static int acCounter = 1200;
 
   /**
    * @param type type
